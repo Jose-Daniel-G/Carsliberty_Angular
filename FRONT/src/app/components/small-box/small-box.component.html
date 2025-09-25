@@ -1,0 +1,12 @@
+<div [class]="'small-box ' + color">
+    <div class="inner">
+        <h3>{{ count }}</h3>
+        <p>{{ text }}</p>
+    </div>
+    <div class="icon">
+        <i [class]="'bi ' + icon"></i> <!-- Aplica 'bi' + icon -->
+    </div>
+    <a [href]="link" class="small-box-footer">
+        {{ linkText }} <i class="fas fa-arrow-circle-right"></i>
+    </a>
+</div>

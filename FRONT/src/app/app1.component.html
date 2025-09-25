@@ -1,0 +1,56 @@
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+<!-- <app-content-wrapper></app-content-wrapper> -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0">Dashboard Shoop</h1>
+                </div><!-- /.col -->
+            </div><!-- /.col -->
+            <div class="row"><!-- /.col -->
+                <div class="col-lg-3 col-6">
+                    <app-small-box color="bg-info" [count]="0" text="Realizar publicación masiva"
+                        icon="ion fas bi bi-person-lines-fill" link="http://carsliberty.test/admin/config"
+                        linkText="Más info"></app-small-box>
+
+                </div><!-- /.col -->
+                <div class="col-lg-3 col-6">
+                    <app-small-box color="bg-primary" [count]="0" text="Administrar Usuarios"
+                        icon="ion fas bi bi-calendar2-week" link="http://carsliberty.test/admin/config"
+                        linkText="Más info"></app-small-box>
+
+                </div><!-- /.col -->
+                <div class="col-lg-3 col-6">
+                    <app-small-box color="bg-warning" [count]="0" text="Consultar últimos procesos"
+                        icon="bi bi-check-circle" link="http://carsliberty.test/admin/config"
+                        linkText="Más info"></app-small-box>
+
+                </div><!-- /.col -->
+                <div class="col-lg-3 col-6">
+                    <app-small-box color="bg-danger" [count]="0" text="Gestionar lista de usuarios" icon="bi bi-laptop"
+                        link="http://carsliberty.test/admin/config" linkText="Más info"></app-small-box>
+
+                </div><!-- /.col -->
+                <div class="col-lg-3 col-6">
+                    <app-small-box color="bg-secondary" [count]="0" text="Realizar una publicación"
+                        icon="bi bi-file-earmark-post" link="http://carsliberty.test/admin/config"
+                        linkText="Más info"></app-small-box>
+
+                </div><!-- /.col -->
+                <div class="col-lg-3 col-6">
+                    <app-small-box color="bg-success" [count]="0" text="Administrar Bases de datos"
+                        icon="bi bi-database-check" link="http://carsliberty.test/admin/config"
+                        linkText="Más info"></app-small-box>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+</div>
+<!-- /.content-header -->
+<app-footer></app-footer>
+<!-- app.component.html -->
+<router-outlet></router-outlet>
+  

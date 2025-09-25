@@ -1,0 +1,102 @@
+<div class="register_wrap section_padding_b">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-xl-5 col-lg-7 col-md-9">
+        <div class="register_form padding_default shadow_sm">
+          <h4 class="title_2">Create an account</h4>
+          <p class="mb-4 text_md">Register here if you are a new customer.</p>
+
+          <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+              <!-- Full Name -->
+              <div class="col-12">
+                <div class="single_billing_inp">
+                  <label>Full Name <span>*</span></label>
+                  <input type="text" formControlName="name" placeholder="John Doe"
+                    [ngClass]="{ 'is-invalid': submitted && registerForm.controls['name'].errors }">
+                  <div *ngIf="submitted && registerForm.controls['name'].errors" class="invalid-feedback">
+                    Name is required (min 3 characters).
+                  </div>
+                </div>
+              </div>
+
+              <!-- Email -->
+              <div class="col-12">
+                <div class="single_billing_inp">
+                  <label>Email Address <span>*</span></label>
+                  <input type="email" formControlName="email" placeholder="example@mail.com"
+                    [ngClass]="{ 'is-invalid': submitted && registerForm.controls['email'].errors }">
+                  <div *ngIf="submitted && registerForm.controls['email'].errors" class="invalid-feedback">
+                    Valid email is required.
+                  </div>
+                </div>
+              </div>
+
+              <!-- Password -->
+              <div class="col-12">
+                <div class="single_billing_inp">
+                  <label>Password <span>*</span></label>
+                  <input type="password" formControlName="password" placeholder="Type password"
+                    [ngClass]="{ 'is-invalid': submitted && registerForm.controls['password'].errors }">
+                  <div *ngIf="submitted && registerForm.controls['password'].errors" class="invalid-feedback">
+                    Password must be at least 6 characters.
+                  </div>
+                </div>
+              </div>
+
+              <!-- Confirm Password -->
+              <div class="col-12">
+                <div class="single_billing_inp">
+                  <label>Confirm Password <span>*</span></label>
+                  <input type="password" formControlName="password_confirmation" placeholder="Confirm your password"
+                    [ngClass]="{ 'is-invalid': submitted && registerForm.errors?.['mismatch'] }">
+                  <div *ngIf="submitted && registerForm.errors?.['mismatch']" class="invalid-feedback">
+                    Passwords do not match.
+                  </div>
+                </div>
+              </div>
+
+              <!-- Terms -->
+              <!-- <div class="col-12 mt-2">
+                <div class="custom_check check_2 d-flex align-items-center">
+                  <input type="checkbox" formControlName="acceptTerms" class="check_inp" id="save-default">
+                  <label for="save-default">
+                    I have read and agree to the
+                    <a href="terms-condition.html" class="text-color">terms & conditions</a>
+                  </label>
+                </div>
+                <div *ngIf="submitted && registerForm.controls['acceptTerms'].errors" class="invalid-feedback d-block">
+                  You must accept the terms.
+                </div>
+              </div> -->
+
+              <!-- Submit -->
+              <div class="col-12 mt-3">
+                <button type="submit" class="default_btn xs_btn rounded px-4 d-block w-100">
+                  Create account
+                </button>
+              </div>
+            </div>
+          </form>
+
+          <!-- <div class="dif_regway my-3">
+            <span class="txt">Or signup with</span>
+          </div>
+
+          <div class="d-flex">
+            <button class="default_btn xs_btn rounded px-4 d-block w-50 text-capitalize bg-facebook">
+              <i class="fab fa-facebook-f me-2"></i> Facebook
+            </button>
+            <button class="default_btn xs_btn rounded px-4 d-block w-50 ms-3 text-capitalize bg-google">
+              <i class="fab fa-google me-2"></i> Google
+            </button>
+          </div>
+
+          <p class="text-center mt-3 mb-0">
+            Already have an account? <a routerLink="/auth/login" class="text-color">Login Now</a>
+          </p> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

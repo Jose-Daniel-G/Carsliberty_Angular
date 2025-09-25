@@ -1,0 +1,45 @@
+ng new adminlte-angular
+cd adminlte-angular
+npm install admin-lte bootstrap jquery popper.js --save
+
+
+Configura el angular.json
+_________________________________________________________________
+"styles": [
+  "src/styles.css",
+  "node_modules/bootstrap/dist/css/bootstrap.min.css",
+  "node_modules/admin-lte/dist/css/adminlte.min.css"
+],
+"scripts": [
+  "node_modules/jquery/dist/jquery.min.js",
+  "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
+  "node_modules/admin-lte/dist/js/adminlte.min.js"
+]
+_________________________________________________________________
+ng generate component layout/header
+ng generate component layout/sidebar
+ng generate component layout/content
+ng generate component layout
+
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+
+// Importa los componentes que quieres usar en las rutas
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { UsersComponent } from './pages/users/users.component';
+import { ReportsComponent } from './pages/reports/reports.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
+
+const routes: Routes = [
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full' }, // Redirección inicial
+  { path: 'dashboard', component: DashboardComponent },
+  { path: 'users', component: UsersComponent },
+  { path: 'reports', component: ReportsComponent },
+  { path: '**', component: NotFoundComponent } // Ruta para 404
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule {}
