@@ -214,18 +214,50 @@
               <i class="nav-icon fas fa-home"></i>
               <p>Dashboard</p>
             </a>
+                        <!-- </li> -->
+            <li class="nav-item has-treeview">
+              <a href="/congig/create" class="nav-link">
+                <i class="nav-icon fa-solid fa-user"></i>
+                <p>
+                  Gestion de Asis
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="/usuarios/create" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Registrar Asistencia</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="/permissions/create" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Listado de Inacistencias</p>
+                  </a>
+                </li> 
+              </ul>
+            </li> 
             <!-- </li> -->
+            <a routerLink="/clientes" class="nav-link">
+              <i class="fa-solid fas fa-laptop"></i>
+              <p>Programador</p>
+            </a>
             <a routerLink="/clientes" class="nav-link">
               <i class="fa-solid fas fa-users"></i>
               <p>Clientes</p>
+            </a>
+            <a routerLink="/profesores" class="nav-link">
+              <i class="fa-solid fas fa-book"></i>
+              <p>Cursos</p>
             </a>
             <a routerLink="/profesores" class="nav-link">
               <i class="fa-solid fa-chalkboard-user"></i>
               <p>Profesores</p>
             </a>
             <a routerLink="/secretarias" class="nav-link">
-              <i class="fa-solid fa-user-tie"></i>
-              <p>Secretarias</p>
+              <i class="fas fa-calendar-alt"></i>
+              <p>Horarios</p>
             </a>
             <a routerLink="/cursos" class="nav-link">
               <i class="fa-solid fas fa-edit"></i>
@@ -250,7 +282,7 @@
               </a>
             </li> -->
             <li class="nav-item has-treeview">
-              <a href="/congig/create" class="nav-link" *ngIf="authService.hasRole('admin')">
+              <a href="/congig/create" class="nav-link" >
                 <i class="nav-icon fa-solid fa-gears"></i>
                 <p>
                   Configuraciones
@@ -265,7 +297,7 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="/permissions/create" class="nav-link" *ngIf="authService.hasPermission('permissions.index')">
+                  <a href="/permissions/create" class="nav-link" >
                     <i class="fas fa-key fa-fw nav-icon"></i>
                     <p>Permisos</p>
                   </a>

@@ -1,4 +1,5 @@
 `URL: `https://jose-daniel-g.github.io/1_store_angular/
+![dashboard](images/image.png)
 ![cellphone_store](images/cellphone_store.png)
 #### `Angular 18.2.21  TypeScript Version 5.5.4`
 
