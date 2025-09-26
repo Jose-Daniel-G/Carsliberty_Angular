@@ -1,21 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import Swal from 'sweetalert2';
 
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ProfesorsService } from '../profesors.service';
 import { Profesor } from '../profesor.interface';
+import { CreateComponent } from '../create/create.component';
 
 @Component({
   selector: 'app-profesors',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, CreateComponent],
   templateUrl: './index.component.html',
 })
 export class IndexComponent implements OnInit {
+  @ViewChild('createComponent') createComponent!: CreateComponent;
   profesors: Profesor[] = [];
 
-  constructor(private profesorsService: ProfesorsService) {}
+  constructor(private profesorsService: ProfesorsService) { }
 
   ngOnInit(): void {
     this.cargarProfesors();
@@ -23,7 +25,7 @@ export class IndexComponent implements OnInit {
 
   cargarProfesors(): void {
     this.profesorsService.getProfesors().subscribe({
-      next: (response) => { 
+      next: (response) => {
         this.profesors = response.profesors.data;
         console.log(this.profesors); // para verificar que llegó
       },

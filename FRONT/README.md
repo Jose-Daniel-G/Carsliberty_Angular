@@ -93,6 +93,7 @@ npm install --save-dev @types/jquery
 
    - Guardar. 
   ```
+  npm i --save-dev @types/bootstrap
   npm install bootstrap jquery jquery-ui-dist slick-carousel line-awesome jquery-nice-select
   ```
 ### VERSIONS 

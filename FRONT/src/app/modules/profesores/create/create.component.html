@@ -1,1 +1,95 @@
-<p>create works!</p>
+<div #createProfesorModal class="modal fade" tabindex="-1" aria-labelledby="createProfesorModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="createProfesorModalLabel">Crear Profesor</h5>
+                <button type="button" class="btn-close" (click)="closeModal()" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="profesorForm" (ngSubmit)="submit()" autocomplete="off">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="nombres">Nombre del profesor </label><b class="text-danger">*</b>
+                                <input type="text" class="form-control" formControlName="nombres">
+                                <small *ngIf="f['nombres'].touched && f['nombres'].invalid" class="bg-danger text-white p-1">
+                                    El nombre es obligatorio
+                                </small>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="apellidos">Apellidos </label><b class="text-danger">*</b>
+                                <input type="text" class="form-control" formControlName="apellidos">
+                                <small *ngIf="f['apellidos'].touched && f['apellidos'].invalid"
+                                    class="bg-danger text-white p-1">
+                                    Los apellidos son obligatorios
+                                </small>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="telefono">Telefono </label><b class="text-danger">*</b>
+                                <input type="number" class="form-control" formControlName="telefono">
+                                <small *ngIf="f['telefono'].touched && f['telefono'].invalid"
+                                    class="bg-danger text-white p-1">
+                                    El teléfono es obligatorio y debe ser numérico
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-2">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="email">Email </label><b class="text-danger">*</b>
+                                <input type="email" class="form-control" formControlName="email"
+                                    autocomplete="new-email">
+                                <small *ngIf="f['email'].touched && f['email'].invalid" class="bg-danger text-white p-1">
+                                    Email inválido o obligatorio
+                                </small>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="password">Contraseña </label><b class="text-danger">*</b>
+                                <input type="password" class="form-control" formControlName="password"
+                                    autocomplete="new-password">
+                                <small *ngIf="f['password'].touched && f['password'].invalid"
+                                    class="bg-danger text-white p-1">
+                                    La contraseña es obligatoria
+                                </small>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="password_confirmation">Verificación de contraseña </label><b
+                                    class="text-danger">*</b>
+<input type="password" class="form-control" formControlName="password_confirmation">
+
+<small *ngIf="f['password_confirmation'].touched && f['password_confirmation'].invalid" class="bg-danger text-white p-1">
+  Debes confirmar la contraseña
+</small>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary">Registrar profesor</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

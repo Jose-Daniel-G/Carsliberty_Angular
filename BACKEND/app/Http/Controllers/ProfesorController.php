@@ -22,15 +22,10 @@ class ProfesorController extends Controller
     }
     public function index()
     {
-        $profesors = Profesor::with('user')->paginate(10); // viene con la relacion del profesor
-        // return view('admin.profesores.index', compact(('profesores')));
+        $profesors = Profesor::with('user')->paginate(10); 
         return response()->json(['profesors'=>$profesors]);
     }
 
-    // public function create()
-    // {
-    //     return view('admin.profesores.create');
-    // }
 
     public function store(Request $request)
     {
@@ -60,7 +55,6 @@ class ProfesorController extends Controller
 
         return redirect()->route('admin.profesores.index')->with(['info', 'Se registró el profesor de forma correcta','icono', 'success']);
     }
-
 
     public function show(Profesor $profesor)
     {   $profesor->load('user');

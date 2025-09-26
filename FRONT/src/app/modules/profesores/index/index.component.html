@@ -7,9 +7,12 @@
     <div class="card card-outline card-primary">
       <div class="card-header d-flex justify-content-between">
         <h3 class="card-title">Usuarios registrados</h3>
-        <button class="btn btn-secondary" [routerLink]="['/create']">
-          Registrar <i class="bi bi-plus-circle-fill"></i>
-        </button>
+        <!-- Esto debe estar fuera de cualquier *ngIf -->
+<app-create #createComponent></app-create>
+<button class="btn btn-secondary" (click)="createComponent?.openModal()">
+  Registrar <i class="bi bi-plus-circle-fill"></i>
+</button>
+
 
       </div>
 
