@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Permission } from '../../../core/models/role.model';
+import { Permission } from '../../../core/models/role.interface';
 
 @Component({
   selector: 'app-permissions', 

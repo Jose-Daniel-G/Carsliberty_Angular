@@ -15,26 +15,18 @@ class ClienteController extends Controller
 
     public function __construct()
     {  // Solo los que tengan el permiso pueden acceder a estas acciones
-        $this->middleware('can:admin.clientes.index')->only('index');
-        $this->middleware('can:admin.clientes.create')->only('create', 'store');
-        $this->middleware('can:admin.clientes.edit')->only('edit', 'update');
-        $this->middleware('can:admin.clientes.destroy')->only('destroy');
+        // $this->middleware('can:admin.clientes.index')->only('index');
+        // $this->middleware('can:admin.clientes.create')->only('create', 'store');
+        // $this->middleware('can:admin.clientes.edit')->only('edit', 'update');
+        // $this->middleware('can:admin.clientes.destroy')->only('destroy');
     }
 
     public function index(Request $request)
     {
-        if ($request->ajax()) {
-            $query = Cliente::with('user')->select('clientes.*');
+        $clientes = Cliente::with('user')->paginate(10);
+        $cursos = Curso::all();
 
-            return DataTables::eloquent($query)->addColumn('action', function ($cliente) { // Puedes devolver botones (renderizar un partial)
-                return view('admin.clientes.partials.actions', compact('cliente'))->render();
-            })->toJson();
-        }
-
-        $cursos = Curso::all(); // si los necesitas en la vista
-        // return view('admin.clientes.index', compact('cursos'));
-        
-        return response()->json(['cursos' => $cursos], 200);
+        return response()->json(['cursos' => $cursos, 'clientes' => $clientes], 200);
     }
     // public function create(){// $cursos = Curso::all();// return view('admin.clientes.create', compact('cursos'));}
     public function store(Request $request)

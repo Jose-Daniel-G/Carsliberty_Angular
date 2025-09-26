@@ -20,7 +20,8 @@
         "phpoffice/phpspreadsheet": "^1.29",
         "rappasoft/laravel-authentication-log": "^4.0",
         "spatie/laravel-permission": "^6.9",
-        "torann/geoip": "^3.0"
+        "torann/geoip": "^3.0",
+        "yajra/laravel-datatables-oracle": "^10.11"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

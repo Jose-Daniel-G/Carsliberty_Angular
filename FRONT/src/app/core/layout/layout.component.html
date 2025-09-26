@@ -216,8 +216,20 @@
             </a>
             <!-- </li> -->
             <a routerLink="/clientes" class="nav-link">
-              <i class="fa-solid fa-spinner"></i>
+              <i class="fa-solid fas fa-users"></i>
               <p>Clientes</p>
+            </a>
+            <a routerLink="/profesores" class="nav-link">
+              <i class="fa-solid fa-chalkboard-user"></i>
+              <p>Profesores</p>
+            </a>
+            <a routerLink="/secretarias" class="nav-link">
+              <i class="fa-solid fa-user-tie"></i>
+              <p>Secretarias</p>
+            </a>
+            <a routerLink="/cursos" class="nav-link">
+              <i class="fa-solid fas fa-edit"></i>
+              <p>Cursos</p>
             </a>
             <!-- <li class="nav-item">
               <a routerLink="/procesar" class="nav-link">
@@ -238,7 +250,7 @@
               </a>
             </li> -->
             <li class="nav-item has-treeview">
-              <a class="nav-link" *ngIf="authService.hasRole('admin')">
+              <a href="/congig/create" class="nav-link" *ngIf="authService.hasRole('admin')">
                 <i class="nav-icon fa-solid fa-gears"></i>
                 <p>
                   Configuraciones
@@ -247,13 +259,13 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="/procesar/create" class="nav-link">
+                  <a href="/usuarios/create" class="nav-link">
                     <i class="fas fa-users fa-fw nav-icon"></i>
                     <p>Usuarios</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="/permissions/create" class="nav-link" *ngIf="authService.hasPermission('permissionsindex')">
+                  <a href="/permissions/create" class="nav-link" *ngIf="authService.hasPermission('permissions.index')">
                     <i class="fas fa-key fa-fw nav-icon"></i>
                     <p>Permisos</p>
                   </a>

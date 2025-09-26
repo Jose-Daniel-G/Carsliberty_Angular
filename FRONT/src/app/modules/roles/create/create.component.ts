@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { PermissionService } from '../../../core/services/permission.service'; // Adjust path if necessary
 import { RoleService } from '../../../core/services/role.service';
-import { Role, Permission } from '../../../core/models/role.model'; // Asegúrate de que Role y Permission están bien definidos
+import { Role, Permission } from '../../../core/models/role.interface'; // Asegúrate de que Role y Permission están bien definidos
 
 @Component({
   selector: 'app-role-create', // Ensure this selector is correct

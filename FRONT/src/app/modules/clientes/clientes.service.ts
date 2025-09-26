@@ -3,7 +3,7 @@ import { environment } from '../../../environments/environment';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Cliente } from './clientes.interface';
+import { Cliente, ClientesResponse } from './cliente.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +13,8 @@ export class ClientesService {
   private apiUrl  = `${this.baseUrl}/clientes`;
 
   constructor(private http: HttpClient, private router: Router) { }
-  getClientes(): Observable<Cliente[]> {
-    return this.http.get<Cliente[]>(this.apiUrl);
+  getClientes(): Observable<ClientesResponse> {
+    return this.http.get<ClientesResponse>(this.apiUrl);
   }
 
   getCliente(id: number): Observable<Cliente> {

@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { RoleService } from '../../../core/services/role.service';
 import { HttpErrorResponse } from '@angular/common/http';
 // Importa Role, Permission y PaginationData. ApiResponse ya no se usará aquí directamente para la lista.
-import { Role, Permission, PaginationData } from '../../../core/models/role.model';
+import { Role, Permission, PaginationData } from '../../../core/models/role.interface';
 import { AuthService } from '../../../core/services/auth.service';
 import { ModalService } from '../../../shared/services/modal.service';
 

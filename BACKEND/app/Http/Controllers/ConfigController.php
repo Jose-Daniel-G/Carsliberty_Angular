@@ -11,10 +11,10 @@ class ConfigController extends Controller
 {
     public function __construct()
     {  // Solo los que tengan el permiso pueden acceder a estas acciones
-        $this->middleware('can:admin.config.index')->only('index');
-        $this->middleware('can:admin.config.create')->only('create', 'store');
-        $this->middleware('can:admin.config.edit')->only('edit', 'update');
-        $this->middleware('can:admin.config.destroy')->only('destroy');
+        // $this->middleware('can:admin.config.index')->only('index');
+        // $this->middleware('can:admin.config.create')->only('create', 'store');
+        // $this->middleware('can:admin.config.edit')->only('edit', 'update');
+        // $this->middleware('can:admin.config.destroy')->only('destroy');
     }
 
     public function index()

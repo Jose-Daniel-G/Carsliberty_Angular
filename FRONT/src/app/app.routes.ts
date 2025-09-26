@@ -35,6 +35,21 @@ export const routes: Routes = [
           import('./modules/clientes/clientes.route').then((m) => m.default),
       },
       {
+        path: 'secretarias',
+        loadChildren: () =>
+          import('./modules/secretarias/secretarias.route').then((m) => m.default),
+      },
+      {
+        path: 'profesores',
+        loadChildren: () =>
+          import('./modules/profesores/profesores.route').then((m) => m.default),
+      },
+      {
+        path: 'cursos',
+        loadChildren: () =>
+          import('./modules/cursos/cursos.route').then((m) => m.default),
+      },
+      {
         path: 'permissions',
         loadChildren: () => import('./modules/permissions/permission.module').then(m => m.PermissionModule),
         canActivate: [AuthGuard],

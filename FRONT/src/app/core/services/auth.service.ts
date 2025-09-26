@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, switchMap, tap, catchError, throwError } from 'rxjs'; // Asegúrate de importar todos estos operadores
-import { LoginRequest, AuthUser, UsuarioLoginResponse } from '../models/login.model'; // Asumo AuthUser para el tipo de usuario devuelto
+import { LoginRequest, AuthUser, UsuarioLoginResponse } from '../models/login.interface'; // Asumo AuthUser para el tipo de usuario devuelto
 import { environment } from '../../../environments/environment';
 import { Router } from '@angular/router';
 

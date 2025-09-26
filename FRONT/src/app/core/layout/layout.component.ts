@@ -4,7 +4,7 @@ import { AuthService } from '../services/auth.service';
 import { AdminLteService } from '../services/admin-lte.service';
 
 import { NgIf } from '@angular/common';
-import { AuthUser } from '../models/login.model';
+import { AuthUser } from '../models/login.interface';
 
 @Component({
   selector: 'app-layout',

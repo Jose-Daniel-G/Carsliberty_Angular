@@ -1,0 +1,50 @@
+<div class="row">
+  <h1>Panel principal</h1>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card card-outline card-primary">
+      <div class="card-header d-flex justify-content-between">
+        <h3 class="card-title">Usuarios registrados</h3>
+        <button class="btn btn-secondary" [routerLink]="['/create']">
+          Registrar <i class="bi bi-plus-circle-fill"></i>
+        </button>
+
+      </div>
+
+      <div class="card-body">
+        <table class="table table-striped table-bordered table-hover table-sm">
+          <thead class="thead-dark">
+            <tr>
+              <th>Nro</th>
+              <th>Nombres</th>
+              <th>Apellidos</th>
+              <th>CC</th>
+              <th>Dirección</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let secretaria of secretarias">
+              <td>{{ secretaria.id }}</td>
+              <td>{{ secretaria.nombres }}</td>
+              <td>{{ secretaria.apellidos }}</td>
+              <td>{{ secretaria.cc }}</td>
+              <td>{{ secretaria.direccion }}</td>
+              <td>
+                <button class="btn btn-sm btn-warning me-1" [routerLink]="['/edit', secretaria.id]">
+                  Editar
+                </button>
+
+                <button class="btn btn-sm btn-danger" (click)="eliminarSecretaria(secretaria.id)">
+                  Eliminar
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

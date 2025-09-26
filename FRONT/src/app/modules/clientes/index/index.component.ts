@@ -4,7 +4,7 @@ import Swal from 'sweetalert2';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ClientesService } from '../clientes.service';
-import { Cliente } from '../clientes.interface';
+import { Cliente } from '../cliente.interface';
 
 @Component({
   selector: 'app-clientes',
@@ -23,10 +23,15 @@ export class IndexComponent implements OnInit {
 
   cargarClientes(): void {
     this.clientesService.getClientes().subscribe({
-      next: (data) => this.clientes = data,
+      next: (response) => { 
+        this.clientes = response.clientes.data;
+        console.log(this.clientes); // para verificar que llegó
+      },
       error: (err) => console.error('Error cargando clientes', err)
     });
   }
+
+
 
   editarCliente(cliente: Cliente): void {
     Swal.fire({

@@ -9,7 +9,7 @@ import {
   PaginationData, // Use the updated ApiResponse
   SuccessMessageResponse,
   ApiResponse
-} from '../models/role.model'; // Correct import path
+} from '../models/role.interface'; // Correct import path
 
 import { environment } from '../../../environments/environment';
 

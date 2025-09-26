@@ -13,15 +13,11 @@ class PicoyPlacaController extends Controller
     }
     public function index()
     {
-        $picoyplaca = PicoyPlaca::all()->groupBy('dia');
-        // dd($picoyplaca);
-        return view('admin.picoyplaca.index', compact('picoyplaca'));
+        $picoyplaca = PicoyPlaca::all()->groupBy('dia'); // dd($picoyplaca);
+        // return view('admin.picoyplaca.index', compact('picoyplaca'));
+        return response()->json($picoyplaca);
     }
 
-    public function create()
-    {
-        return view('admin.picoyplaca.create');
-    }
     public function update(Request $request)
     {
         // Asegúrate de que los arrays de datos existan

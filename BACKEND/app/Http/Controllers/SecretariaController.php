@@ -12,15 +12,15 @@ class SecretariaController extends Controller
 {
     public function __construct()
     {  // Solo los que tengan el permiso pueden acceder a estas acciones
-        $this->middleware('can:admin.secretarias.index')->only('index');
-        $this->middleware('can:admin.secretarias.create')->only('create', 'store');
-        $this->middleware('can:admin.secretarias.edit')->only('edit', 'update');
-        $this->middleware('can:admin.secretarias.destroy')->only('destroy');
+        // $this->middleware('can:admin.secretarias.index')->only('index');
+        // $this->middleware('can:admin.secretarias.create')->only('create', 'store');
+        // $this->middleware('can:admin.secretarias.edit')->only('edit', 'update');
+        // $this->middleware('can:admin.secretarias.destroy')->only('destroy');
     }
     public function index()
     {
-        $secretarias = Secretaria::with('user')->get(); // viene con la relacion del secretaria
-        return view('admin.secretarias.index', compact('secretarias'));
+        $secretarias = Secretaria::with('user')->paginate(10); // viene con la relacion del secretarias
+        return response()->json(['secretarias'=>$secretarias]);
     }
     // public function create(){return view('admin.secretarias.create');}
     public function store(Request $request)
@@ -60,11 +60,6 @@ class SecretariaController extends Controller
         } catch (\Exception $exception) {
                 return back()->withInput()->with(['title' => 'Error','info'  => 'No se registró la secretaria. ' . $exception->getMessage(),'icono' => 'error','openModal' => 'createModal' ]);// <- clave para reabrir el modal // return back()->withErrors(['error' => 'Ocurrió un error inesperado.'])->withInput();
         }
-    }
-
-    public function show(Secretaria $secretaria)
-    {
-        return view('admin.secretarias.show', compact('secretaria'));
     }
 
     public function edit(Secretaria $secretaria)

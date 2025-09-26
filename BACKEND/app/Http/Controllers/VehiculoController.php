@@ -10,10 +10,10 @@ class VehiculoController extends Controller
 {
     public function __construct()
     {  // Solo los que tengan el permiso pueden acceder a estas acciones
-        $this->middleware('can:admin.vehiculos.index')->only('index');
-        $this->middleware('can:admin.vehiculos.create')->only('create', 'store');
-        $this->middleware('can:admin.vehiculos.edit')->only('edit', 'update');
-        $this->middleware('can:admin.vehiculos.destroy')->only('destroy');
+        // $this->middleware('can:admin.vehiculos.index')->only('index');
+        // $this->middleware('can:admin.vehiculos.create')->only('create', 'store');
+        // $this->middleware('can:admin.vehiculos.edit')->only('edit', 'update');
+        // $this->middleware('can:admin.vehiculos.destroy')->only('destroy');
     }
     
     public function index()
@@ -23,10 +23,13 @@ class VehiculoController extends Controller
         // dd($vehiculos);
         $tipos = TipoVehiculo::all();
         $profesors = Profesor::all();
-        return view("admin.vehiculos.index", compact('vehiculos', 'tipos', 'profesors'));
+        // return view("admin.vehiculos.index", compact('vehiculos', 'tipos', 'profesors'));
+        return response()->json([
+            'vehiculos' => $vehiculos,
+            'tipos' => $tipos,
+            'profesors' => $profesors,
+        ]);
     }
-
-    public function create() {}
 
     public function store(Request $request)
     {

@@ -3,8 +3,12 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\CursoController;
 use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\ProfesorController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\SecretariaController;
 use PgSql\Lob;
 
 // Rutas públicas
@@ -40,3 +44,9 @@ Route::middleware('auth:sanctum')->group(function () {
     // Roles
     Route::resource('/roles', RoleController::class)->names('admin.roles');
 });
+//RUTAS CLIENTES
+// Route::apiResource('/clientes', ClienteController::class)->names('admin.clientes')->middleware('auth', 'can:admin.clientes');
+Route::apiResource('/clientes', ClienteController::class)->names('admin.clientes');
+Route::apiResource('/cursos', CursoController::class)->names('admin.cursos');
+Route::apiResource('/secretarias', SecretariaController::class)->names('admin.secretarias');
+Route::apiResource('/profesores', ProfesorController::class)->names('admin.profesores');

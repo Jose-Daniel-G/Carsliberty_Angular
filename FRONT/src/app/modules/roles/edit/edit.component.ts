@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RoleService } from '../../../core/services/role.service';
-import { Role, Permission, UpdateRolePayload, ApiResponse, SuccessMessageResponse } from '../../../core/models/role.model'; // Removed PaginationData as ApiResponse is flat now
+import { Role, Permission, UpdateRolePayload, ApiResponse, SuccessMessageResponse } from '../../../core/models/role.interface'; // Removed PaginationData as ApiResponse is flat now
 import { ModalService } from '../../../shared/services/modal.service'; // Import ModalService for consistency with IndexComponent
 import { tap } from 'rxjs/operators'; // Import tap for debugging
 

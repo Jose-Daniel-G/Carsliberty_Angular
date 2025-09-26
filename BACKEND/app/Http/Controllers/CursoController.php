@@ -12,22 +12,21 @@ class CursoController extends Controller
 {
     public function __construct()
     {  // Solo los que tengan el permiso pueden acceder a estas acciones
-        $this->middleware('can:admin.cursos.index')->only('index');
-        $this->middleware('can:admin.cursos.create')->only('create', 'store');
-        $this->middleware('can:admin.cursos.edit')->only('edit', 'update');
-        $this->middleware('can:admin.cursos.destroy')->only('destroy');
+        // $this->middleware('can:admin.cursos.index')->only('index');
+        // $this->middleware('can:admin.cursos.create')->only('create', 'store');
+        // $this->middleware('can:admin.cursos.edit')->only('edit', 'update');
+        // $this->middleware('can:admin.cursos.destroy')->only('destroy');
     }
 
-    public function index() { $cursos = Curso::all();   return view('admin.cursos.index', compact(('cursos'))); }
+    public function index() { 
+        $cursos = Curso::paginate(10);   
+        return response()->json(['cursos'=>$cursos]);
+    }
     // public function create() {  return view('admin.cursos.create'); }
     // public function show(Curso $curso) { return view('admin.cursos.show', compact('curso')); }
     public function store(Request $request)
     {
-        $request->validate([
-            'nombre' => 'required',
-            'horas_requeridas' => 'required|integer|min:1',
-            'estado' => 'required|in:0,1',
-            'descripcion' => 'nullable',
+        $request->validate(['nombre' => 'required','horas_requeridas' => 'required|integer|min:1','estado' => 'required|in:0,1','descripcion' => 'nullable',
         ]);
         // dd($request->all());
         Curso::create($request->all());// Crear un nuevo curso

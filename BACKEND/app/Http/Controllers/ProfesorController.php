@@ -15,21 +15,22 @@ class ProfesorController extends Controller
 {
     public function __construct()
     {  // Solo los que tengan el permiso pueden acceder a estas acciones
-        $this->middleware('can:admin.profesores.index')->only('index');
-        $this->middleware('can:admin.profesores.create')->only('create', 'store');
-        $this->middleware('can:admin.profesores.edit')->only('edit', 'update');
-        $this->middleware('can:admin.profesores.destroy')->only('destroy');
+        // $this->middleware('can:admin.profesores.index')->only('index');
+        // $this->middleware('can:admin.profesores.create')->only('create', 'store');
+        // $this->middleware('can:admin.profesores.edit')->only('edit', 'update');
+        // $this->middleware('can:admin.profesores.destroy')->only('destroy');
     }
     public function index()
     {
-        $profesores = Profesor::with('user')->get(); // viene con la relacion del profesor
-        return view('admin.profesores.index', compact(('profesores')));
+        $profesors = Profesor::with('user')->paginate(10); // viene con la relacion del profesor
+        // return view('admin.profesores.index', compact(('profesores')));
+        return response()->json(['profesors'=>$profesors]);
     }
 
-    public function create()
-    {
-        return view('admin.profesores.create');
-    }
+    // public function create()
+    // {
+    //     return view('admin.profesores.create');
+    // }
 
     public function store(Request $request)
     {
@@ -109,25 +110,7 @@ class ProfesorController extends Controller
             ->with(['info', 'El profesor se eliminó con éxito','icono', 'success']);
     }
 
-    public function reportes() {return view('admin.profesores.reportes'); }
-
-    public function pdf($id)
-    {
-        $config = Config::latest()->first();
-        $profesores = Profesor::all();
-        $pdf = PDF::loadView('admin.profesores.pdf', compact('config', 'profesores'));
-
-        // Incluir la numeración de páginas y el pie de página
-        $pdf->output();
-        $dompdf = $pdf->getDomPDF();
-        $canvas = $dompdf->getCanvas();
-        $canvas->page_text(20, 800, "Impreso por: " . Auth::user()->email, null, 10, array(0, 0, 0));
-        $canvas->page_text(270, 800, "Página {PAGE_NUM} de {PAGE_COUNT}", null, 10, array(0, 0, 0));
-        $canvas->page_text(450, 800, "Fecha: " . \Carbon\Carbon::now()->format('d/m/Y') . " - " . \Carbon\Carbon::now()->format('H:i:s'), null, 10, array(0, 0, 0));
-
-        return $pdf->stream();
-    }
-  
+   
     public function obtenerProfesores($cursoId)
     {
         try {
