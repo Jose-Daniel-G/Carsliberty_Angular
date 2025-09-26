@@ -6,6 +6,7 @@ export interface Profesor {
   nombres: string;
   apellidos: string;
   telefono: string;
+  email: string;
   user: User;  // <- agregado
 }
 

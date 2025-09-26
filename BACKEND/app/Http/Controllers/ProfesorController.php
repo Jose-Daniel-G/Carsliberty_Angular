@@ -22,8 +22,8 @@ class ProfesorController extends Controller
     }
     public function index()
     {
-        $profesors = Profesor::with('user')->paginate(10); 
-        return response()->json(['profesors'=>$profesors]);
+        $profesors = Profesor::with('user')->paginate(10);
+        return response()->json(['profesors' => $profesors]);
     }
 
 
@@ -53,11 +53,12 @@ class ProfesorController extends Controller
         Profesor::create($profesor);
         $usuario->assignRole('profesor');   // Asignar rol de 'profesor' al nuevo usuario
 
-        return redirect()->route('admin.profesores.index')->with(['info', 'Se registró el profesor de forma correcta','icono', 'success']);
+        return redirect()->route('admin.profesores.index')->with(['info', 'Se registró el profesor de forma correcta', 'icono', 'success']);
     }
 
     public function show(Profesor $profesor)
-    {   $profesor->load('user');
+    {
+        $profesor->load('user');
         return response()->json($profesor); // return view('admin.profesores.show', compact('profesor'));
     }
 
@@ -68,43 +69,59 @@ class ProfesorController extends Controller
     }
 
 
-    public function update(Request $request, Profesor $profesor)
+    public function update(Request $request, $id)
     {
+        $profesor = Profesor::with('user')->findOrFail($id);
+
         $data = $request->validate([
-        'nombres' => 'required',
-        'apellidos' => 'required',
-        'telefono' => 'required',
-        'email' => 'required|email|max:50|unique:users,email,'.$profesor->user_id, // Excluyendo el usuario actual
-        'password' => 'nullable|min:8|confirmed',                                  // Permitir que la contraseña sea opcional
+            'nombres' => 'required',
+            'apellidos' => 'required',
+            'telefono' => 'required',
+            'email' => 'required|email|max:50|unique:users,email,' . $profesor->user_id,
+            'password' => 'nullable|min:8|confirmed',
         ]);
-        
-        $data['user_id'] = $profesor->user_id;                                     // Asignar el user_id actual a los datos
-        $profesor->update($data);                                                  // Actualiza el profesor
 
-        $usuario = $profesor->user;                                                // Obtener el usuario asociado al profesor
-        $usuario->email = $data['email'];                                          // Actualizar el email del usuario
-    
-        if ($request->filled('password')) {$usuario->password = Hash::make($request['password']);}// Si el campo password se ha tocado
+        // Actualizar profesor
+        $profesor->update([
+            'nombres' => $data['nombres'],
+            'apellidos' => $data['apellidos'],
+            'telefono' => $data['telefono'],
+        ]);
 
-        $usuario->save(); // Guardar cambios del usuario
+        // Actualizar usuario
+        $usuario = $profesor->user;
+        $usuario->email = $data['email'];
 
-        return redirect()->route('admin.profesores.index')->with('info', 'Profesor actualizado correctamente.','icono', 'success');
+        if ($request->filled('password')) {
+            $usuario->password = Hash::make($data['password']);
+        }
+
+        $usuario->save();
+
+        return response()->json([
+            'message' => 'Profesor actualizado correctamente',
+            'profesor' => $profesor->load('user')
+        ]);
     }
+
 
     public function destroy(Profesor $profesor)
     {   // Verificar si el profesor tiene agendas asociados
         if ($profesor->agendas()->exists()) {
             return redirect()->route('admin.profesores.index')->with('title', 'Error al eliminar profesor')
-                ->with(['info', 'No se puede eliminar el profesor porque tiene agendas asociados.','icono', 'error']);
+                ->with(['info', 'No se puede eliminar el profesor porque tiene agendas asociados.', 'icono', 'error']);
         }
 
-        if ($profesor->user) {$profesor->user->delete();}$profesor->delete(); //// Eliminar el profesor y usuario asociado
+        if ($profesor->user) {
+            $profesor->user->delete();
+        }
+        $profesor->delete(); //// Eliminar el profesor y usuario asociado
 
         return redirect()->route('admin.profesores.index')
-            ->with(['info', 'El profesor se eliminó con éxito','icono', 'success']);
+            ->with(['info', 'El profesor se eliminó con éxito', 'icono', 'success']);
     }
 
-   
+
     public function obtenerProfesores($cursoId)
     {
         try {
@@ -117,18 +134,19 @@ class ProfesorController extends Controller
                 ->select('profesors.*')
                 ->distinct()
                 ->get();
-     
+
             if ($profesores->isEmpty()) {
                 return response()->json(['message' => 'No se encontraron profesores para este curso.'], 404);
             }
-    
+
             return response()->json($profesores); // Devuelves la lista de profesores en formato JSON
         } catch (\Exception $e) {
             return response()->json(['message' => 'Error al cargar los profesores: ' . $e->getMessage()], 500);
         }
     }
     public function toggleStatus($id) //DEACTIVATE
-    {  $user = User::findOrFail($id);
+    {
+        $user = User::findOrFail($id);
         $user->status = !$user->status;
         $user->save();
     }

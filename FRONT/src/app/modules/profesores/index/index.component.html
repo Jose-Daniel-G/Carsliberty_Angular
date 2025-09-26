@@ -9,7 +9,7 @@
         <h3 class="card-title">Usuarios registrados</h3>
         <!-- Esto debe estar fuera de cualquier *ngIf -->
 <app-create #createComponent></app-create>
-<button class="btn btn-secondary" (click)="createComponent?.openModal()">
+<button class="btn btn-secondary" (click)="createComponent?.openModal('create')">
   Registrar <i class="bi bi-plus-circle-fill"></i>
 </button>
 
@@ -34,9 +34,9 @@
               <td>{{ profesor.apellidos }}</td>
               <td>{{ profesor.telefono }}</td>
               <td>
-                <button class="btn btn-sm btn-warning me-1" [routerLink]="['/edit', profesor.id]">
-                  Editar
-                </button>
+<button class="btn btn-warning btn-sm me-1" (click)="editarProfesor(profesor)">
+  Editar
+</button>
 
                 <button class="btn btn-sm btn-danger" (click)="eliminarProfesor(profesor.id)">
                   Eliminar
